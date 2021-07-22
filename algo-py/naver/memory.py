@@ -1,3 +1,11 @@
+from collections import deque
+d = deque([])
+# d.popleft()
+a = ["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"]
+
+for i in range(5):
+    for j in range(5):
+        print(a[i][j])
 # def s(param):
 #
 #     result = []
