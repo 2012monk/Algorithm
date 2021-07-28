@@ -39,7 +39,6 @@ def convertExpression(expression: str) -> list[str]:
                 result.append(stack.pop())
             stack.pop()
         else:
-
             # 우선순위가 op1 < op2 일때 True
             while stack and not compareOp(char, stack[-1]):
                 result.append(stack.pop())
