@@ -8,6 +8,7 @@ def solution(n):
 
     return dp[n]
 
+
 if __name__ == '__main__':
     print(solution(int(input())))
 
