@@ -8,9 +8,6 @@ O(n^2)
 
 수열의 길이를 저장해 놓았던 배열을 순회하면서 가장 큰 값 + 1을 업데이트 한다
 
-수열 순회 O(n)
-
-검색 O(k - 1)
 
 ## Binary Search 를 이용해 개선
 
@@ -54,8 +51,14 @@ lis = [1, 3, 4]
 
 ```
 
+### 참고
+
 [lis1](https://chanhuiseok.github.io/posts/algo-49/)
+
+
 [lis2](https://jins-dev.tistory.com/entry/%EC%B5%9C%EC%A0%81%ED%99%94%EB%90%9C-LISLongest-Increasing-Subsequence-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EA%B3%BC-%ED%95%B4-%EC%B0%BE%EA%B8%B0#recentEntries)
+
+
 [binary search](https://cjh5414.github.io/binary-search/)
 
 
