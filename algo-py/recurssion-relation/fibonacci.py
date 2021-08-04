@@ -1,5 +1,9 @@
 import time
-from math import *
+import sys
+
+import numpy as np
+
+sys.setrecursionlimit(10 ** 6)
 
 
 def fib(n):
@@ -13,9 +17,23 @@ def fib(n):
 
 
 def fib2(n):
-    k = sqrt(5)
-    print(((k + 1) / 2) ** n - ((k - 1) / 2) ** n)
-    return (((k + 1) / 2) ** n - ((k - 1) / 2) ** n) / k
+    dp = [0, 1] + [0] * n
+
+    def r(k):
+        if k <= 1:
+            return k
+        if not dp[k]:
+            dp[k] = r(k - 1) + r(k - 2)
+        return dp[k]
+
+    return r(n)
+
+
+def fib3(n):
+    m = np.matrix([[0, 1], [1, 1]])
+    vec = np.array([[0], [1]])
+
+    return np.matmul(m ** n, vec)[0]
 
 
 def measure_time(func, arg):
@@ -26,5 +44,6 @@ def measure_time(func, arg):
     print(end, 'second')
 
 
-measure_time(fib, 3)
-measure_time(fib2, 2)
+measure_time(fib, 1000)
+measure_time(fib2, 1000)
+measure_time(fib3, 1000)

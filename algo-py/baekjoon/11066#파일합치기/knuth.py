@@ -3,6 +3,7 @@ import sys
 M = sys.maxsize
 input = sys.stdin.readline
 
+
 # knuth 최적화 적용 O(n^2)
 def solution(n, cost):
     s = [0] + cost
