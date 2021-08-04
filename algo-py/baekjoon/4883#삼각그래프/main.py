@@ -5,6 +5,7 @@ input = sys.stdin.readline
 
 
 def solution(n, dp):
+    # 0,0 에서는 고르지 못하도록 setup
     dp[0][0] = sys.maxsize
     dp[0][2] += dp[0][1]
 
