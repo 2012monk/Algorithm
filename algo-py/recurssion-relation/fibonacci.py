@@ -16,6 +16,14 @@ def fib(n):
     return b
 
 
+def fib4(n):
+    a = 0
+    b = 1
+    for _ in range(n - 1):
+        a, b = b, a + b
+    return b
+
+
 def fib2(n):
     dp = [0, 1] + [0] * n
 
