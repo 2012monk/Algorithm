@@ -1,11 +1,13 @@
+from collections import defaultdict
 from typing import List
+
 
 # nCr = n-1Cr + n-1Cr-1 응용
 
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         res = []
-        self.comb(n,k,1,[],res)
+        self.comb(n, k, 1, [], res)
         return res
 
     def comb(self, n, k, t, path, res):
