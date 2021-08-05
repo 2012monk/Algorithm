@@ -12,7 +12,7 @@ def measure_time(func, *arg):
     return r
 
 
-def count(func):
+def Count(func):
     def __d():
         st = tm()
         r = func()
@@ -23,10 +23,3 @@ def count(func):
     return __d
 
 
-@count
-def test():
-    for i in range(int(1e10)):
-        i = i
-        # print('.',end='')
-
-test()
