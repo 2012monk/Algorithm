@@ -13,9 +13,9 @@ def measure_time(func, *arg):
 
 
 def Count(func):
-    def __d():
+    def __d(*args):
         st = tm()
-        r = func()
+        r = func(*args)
         print(func.__name__, 'return :', r)
         end = tm()
         print('time :', timedelta(seconds=end - st), 'sec')
