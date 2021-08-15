@@ -2,7 +2,6 @@ from collections import deque
 import random
 import time
 
-
 n = 2 ** 13
 l = [random.randint(1, n) for _ in range(n)]
 t = l.copy()
@@ -36,3 +35,16 @@ for i in t:
 end = time.time()
 print(*q)
 print(end - st)
+
+
+def insertionSort(arr):
+    for i in range(1, len(arr)):
+        a = i - 1
+        t = arr[i]
+        while a >= 0 and arr[a] > t:
+            arr[a + 1] = arr[a]
+            a -= 1
+        arr[a + 1] = t
+
+
+print(insertionSort(l))
