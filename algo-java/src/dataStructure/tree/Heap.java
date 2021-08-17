@@ -52,7 +52,6 @@ public class Heap {
         }
         System.out.println();
         int a[]= new int[2];
-        'c' ==daf
     }
 
     public int extract() {

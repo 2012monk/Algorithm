@@ -49,17 +49,19 @@ public abstract class GenericSort {
     public abstract <E extends Comparable<? super E>> void sort(E[] arr); /* implement sort */
 
     public void test() {
-        Integer[] arr = new Integer[60];
+        int size = 1 << 16;
+        Integer[] arr = new Integer[size];
         Random r = new Random();
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = r.nextInt(9999);
+            arr[i] = r.nextInt(size);
         }
         long st = System.nanoTime();
         sort(arr);
         double e = (double) (System.nanoTime() - st) / 1_000_000_000;
         System.out.println("time takes : " + e + "s");
         if (isSorted(arr)) {
-            printAndEval(arr);
+//            printAndEval(arr);
+            System.out.println("Sort complete");
         } else {
             System.out.println("Failed array not sorted");
         }

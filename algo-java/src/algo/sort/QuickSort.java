@@ -1,7 +1,4 @@
 package algo.sort;
-
-import java.util.Arrays;
-
 /**
  * Quick sort implementation
  * - lomuto partition
@@ -11,8 +8,8 @@ public class QuickSort extends GenericSort {
 
     @Override
     public <E extends Comparable<? super E>> void sort(E[] arr) {
-        Arrays.sort(arr);
-        sort(arr, 0, arr.length - 1);
+//        sort(arr, 0, arr.length - 1);
+        threeWaySort(arr,0,arr.length-1);
     }
 
 
@@ -35,6 +32,7 @@ public class QuickSort extends GenericSort {
         return lo;
     }
 
+    // 첫번째 값을 피벗으로 잡는 partition
     private <E extends Comparable<? super E>> int partitionF(E[] arr, int lo, int hi) {
         E pivot = arr[lo]; // 첫번째 값을 pivot 으로
         int left = lo, right = hi + 1;
@@ -46,6 +44,25 @@ public class QuickSort extends GenericSort {
         }
         swap(arr, lo, right);
         return right;
+    }
+
+    // three pivot
+    private <E extends Comparable<? super E>> void threeWaySort(E[] arr, int lo, int hi){
+        if (hi <= lo) return;
+        int lt = lo, i = lo+1, gt = hi;
+        E v = arr[lo];
+        while (i <= gt) {
+            int cmp = arr[i].compareTo(v);
+            if (cmp < 0) swap(arr, i++, lt++);
+            else if (cmp > 0) swap(arr, i, gt--);
+            else i++;
+        }
+        threeWaySort(arr, lo, lt - 1);
+        threeWaySort(arr, gt + 1, hi);
+    }
+
+    public static void main(String[] args) {
+        new QuickSort().test();
     }
 
 }

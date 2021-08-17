@@ -1,14 +1,12 @@
 package algo.backjoon.Stack10828;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class MainTest {
+
     @Test
     void regex() {
 
@@ -21,20 +19,20 @@ class MainTest {
     @Test
     void main() throws IOException {
         String in = "14\n" +
-                "push 1\n" +
-                "push 2\n" +
-                "top\n" +
-                "size\n" +
-                "empty\n" +
-                "pop\n" +
-                "pop\n" +
-                "pop\n" +
-                "size\n" +
-                "empty\n" +
-                "pop\n" +
-                "push 3\n" +
-                "empty\n" +
-                "top";
+            "push 1\n" +
+            "push 2\n" +
+            "top\n" +
+            "size\n" +
+            "empty\n" +
+            "pop\n" +
+            "pop\n" +
+            "pop\n" +
+            "size\n" +
+            "empty\n" +
+            "pop\n" +
+            "push 3\n" +
+            "empty\n" +
+            "top";
 
         Main.test(in);
         System.out.println(in);
@@ -45,7 +43,7 @@ class MainTest {
     void main2() throws IOException {
 
         System.out.println("push 1");
-        System.out.println("size ; "+Main.size());
+        System.out.println("size ; " + Main.size());
         System.out.println(Main.empty());
         Main.push(1);
         System.out.println(Main.top());
