@@ -1,0 +1,22 @@
+The key observation is that the characters in the text that would need to be rescanned are precisely pat.charAt(1) through pat.charAt(j-1): we drop the first character to shift right one position and the last character because of the mismatch. These are
+pattern characters that we know, so we can figure out ahead of time, for each possible mismatch position, the state where we need to restart the DFA. The figure at left shows the possibilities for our example. Be sure that you understand this concept.
+What should the DFA do with the next character? Exactly what it would have done if we had backed up, except if it finds a match with pat.charAt(j), when it should go to state j+1. For example, to decide what the DFA should do when we have amismatchatj = 5forA B A B A C,weusetheDFAtolearn thatafullbackupwouldleaveusinstate3forB A B A,sowe can copy dfa[][3] to dfa[][5], then set the entry for C to 6 because pat.charAt(5) is C (a match). Since we only need to know how the DFA runs for j-1 characters when we are build- ing the jth state, we can always get the information that we need
+from the partially built DFA.
+The final crucial detail to the computation is to observe that maintaining the restart
+positionXwhenworkingoncolumnjofdfa[][]iseasybecauseX < jsothatwecanuse the partially built DFA to do the job—the next value of X is dfa[pat.charAt(j)][X]). Continuing our example from the previous paragraph, we would update the value of Xtodfa['C'][3] = 0(butwedonotusethatvaluebecausetheDFAconstructionis complete).
+The discussion above leads to the remarkably compact code below for constructing the DFA corresponding to a given pattern. For each j, it
+1A
+0
+2 A B 00
+3ABA 001
+4ABAB 0012
+restart states X
+  5ABABA 00123
+DFA simulations to compute restartstatesforA B A B A C
+ ■ ■ ■
+Copies dfa[][X] to dfa[][j] (for mismatch cases)
+Sets dfa[pat.charAt(j)][j] to j+1 (for the match case) Updates X
+The
+this
+that
+5.3.2 and Exercise 5.3.3.
