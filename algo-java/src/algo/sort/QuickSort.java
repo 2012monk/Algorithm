@@ -1,4 +1,5 @@
 package algo.sort;
+
 /**
  * Quick sort implementation
  * - lomuto partition
