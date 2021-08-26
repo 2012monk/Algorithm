@@ -1,4 +1,4 @@
-package grep.App;
+package codingtest.grep.App;
 
 import java.util.ArrayList;
 import java.util.HashMap;
