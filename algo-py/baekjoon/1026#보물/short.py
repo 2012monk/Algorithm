@@ -1,1 +1,1 @@
-_,a,b=open(0);x=lambda a:sorted(map(int,a.splint()));print(sum(map(lambda i,j:i*j,x(a),x(b)[::-1])))
+_,a,b=open(0);x=lambda a:sorted(map(int,a.split()));print(sum(map(lambda i,j:i*j,x(a),x(b)[::-1])))
