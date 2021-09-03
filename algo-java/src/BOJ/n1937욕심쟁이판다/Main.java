@@ -39,7 +39,7 @@ public class Main {
 
     public static int dfs(int i, int j) {
         if (visited[i][j] != -1) return visited[i][j];
-//        visited[i][j] = 0;
+
         int r = 0;
         for (int t=0;t<4;t++) {
             int x = dx[t] + i;
@@ -48,8 +48,7 @@ public class Main {
                 r = Math.max(r, dfs(x, y));
             }
         }
-        visited[i][j] = r + 1;
-        return visited[i][j];
+        return visited[i][j] = r + 1;
     }
 
 }
