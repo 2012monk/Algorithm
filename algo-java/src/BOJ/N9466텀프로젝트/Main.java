@@ -21,13 +21,31 @@ public class Main {
             init();
             int r = 0;
             for (int i = 1; i <= n; i++) {
-                if (visited[i] != 0) continue;
-                dist[i] = 1;
-                r += dfs(i, i);
+                if (visited[i] == 0) {
+
+                    dist[i] = 1;
+                    r += dfs(i, i);
+//                    r += iterateDFS(i, i);
+                    System.out.println("    rrr  " +r);
+                }
             }
             sb.append(r).append("\n");
         }
         System.out.println(sb);
+    }
+
+    static int iterateDFS(int current, int start) {
+        System.out.println(current);
+        while (true) {
+            visited[current] = start;
+            if (visited[graph[current]] != 0) break;
+            dist[graph[current]] = dist[current] + 1;
+            current = graph[current];
+        }
+        visited[current] = start;
+
+        if (visited[graph[current]] == start) return dist[graph[current]] - 1;
+        return dist[current];
     }
 
     static int dfs(int current, int start) {
