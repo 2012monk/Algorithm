@@ -61,7 +61,7 @@ public class Main {
      */
     static void melt() {
         int size = waterQ.size();
-        for (int i = 0; i < size; i++) {
+        while (size-- > 0){
             int[] t = waterQ.poll();
             for (int[] d : dt) {
                 int dx = d[0] + t[0];
