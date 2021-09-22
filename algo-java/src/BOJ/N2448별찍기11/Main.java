@@ -19,23 +19,21 @@ public class Main {
     };
 
     static void star(int x, int y, int size) {
-        if (size == 1) {
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < 5; j++) {
-                    board[i+x][j+y] = board[i][j];
-                }
+        if (size == 3) {
+            for (int i = x; i >= x-2; i--) {
+                System.arraycopy(tree[i - x + 2], 0, board[i], y, y + 5 - y);
             }
             return;
         }
-        star(x, y+3*size/2, size>>1);
-        star(x+3*size/2, y, size>>1);
-        star(x+3*size/2, y+3*size/2, size>>1);
+        star(x, y, size>>1);
+        star(x-(size>>1), y+(size>>1),size>>1);
+        star(x, y+size,size>>1);
     }
 
     public static void main(String[] args) throws IOException {
         n = Integer.parseInt(br.readLine());
         board = new int[n][n*2];
-        star(0, 0, n);
+        star(n-1, 0, n);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n * 2; j++) {
                 if (board[i][j] == 1) bw.write('*');
