@@ -1,4 +1,4 @@
-package N16236아기상어;
+package BOJ.N16236아기상어;
 
 import java.io.BufferedReader;
 import java.io.IOException;
