@@ -1,4 +1,4 @@
-package BOJ.N15656N과M7;
+package BOJ.N15657N과M8;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
+
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -29,19 +30,19 @@ public class Main {
             numbers[i] = Integer.parseInt(stz.nextToken());
         }
         Arrays.sort(numbers);
-        solve(0);
+        solve(0, 0);
         bw.write(sb.toString());
         bw.flush();
     }
 
-    static void solve(int x) {
+    static void solve(int x, int start) {
         if (x == m) {
             sb.append(String.join(" ", path)).append("\n");
             return;
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = start; i < n; i++) {
             path[x] = String.valueOf(numbers[i]);
-            solve(x + 1);
+            solve(x + 1, i);
         }
     }
 }
