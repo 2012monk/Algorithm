@@ -12,6 +12,7 @@ public class Main {
     static List<Integer> candidates = new ArrayList<>();
     static int[][] grid = new int[9][9];
     static int[] ver = new int[9], hoz = new int[9], square = new int[9];
+    static int count = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,12 +35,14 @@ public class Main {
                 }
                 System.out.println();
             }
+            System.out.println(count);
         } else {
             System.out.println("ERR");
         }
     }
 
     public static boolean find(int p) {
+        count++;
         if (p == candidates.size()) {
             return true;
         }
