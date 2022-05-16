@@ -10,13 +10,21 @@ import java.util.StringTokenizer;
 
 public class Main {
 
+    static class P {
+        int x, y, d;
+        public P(int x, int y, int d) {
+            this.x = x;
+            this.y = y;
+            this.d = d;
+        }
+    }
     static int[][] dist, dp, grid, d = {
         {0, 1}, {0, -1}, {1, 0}, {-1, 0}
     };
+    static boolean[][] v;
     static int n, m, points;
-    static boolean[] v;
     static P[] ps;
-    static int[] path;
+    static Queue<P> q = new LinkedList<>();
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringBuffer sb = new StringBuffer();
     static StringTokenizer stz;
@@ -26,6 +34,40 @@ public class Main {
             solve();
         }
         System.out.println(sb);
+    }
+
+    static boolean setUp() throws IOException {
+        stz = new StringTokenizer(br.readLine());
+        m = Integer.parseInt(stz.nextToken());
+        n = Integer.parseInt(stz.nextToken());
+        if (n == 0) return false;
+        grid = new int[n][m];
+        ps = new P[n*m];
+        points = 1;
+        for (int i = 0; i < n; i++) {
+            String s = br.readLine();
+            for (int j = 0; j < m; j++) {
+                char c = s.charAt(j);
+                set(i, j, c);
+            }
+        }
+        dist = new int[points][points];
+        dp = new int[points][1<<points];
+        return true;
+    }
+
+    private static void set(int i, int j, char c) {
+        int idx = 0;
+        grid[i][j] = -2;
+        if (c == 'x') {
+            grid[i][j] = -1;
+            return;
+        }
+        if (c == '.') return;
+        if (c == '*') {
+            idx = points++;
+        }
+        ps[grid[i][j] = idx] = new P(i, j, 0);
     }
 
     static void solve() {
@@ -39,60 +81,12 @@ public class Main {
         sb.append(tsp(0, 1)).append("\n");
     }
 
-    static boolean setUp() throws IOException {
-        stz = new StringTokenizer(br.readLine());
-        m = Integer.parseInt(stz.nextToken());
-        n = Integer.parseInt(stz.nextToken());
-        if (n == 0) return false;
-        grid = new int[n][m];
-        ps = new P[n * m];
-        points = 1;
-        for (int i = 0; i < n; i++) {
-            String s = br.readLine();
-            for (int j = 0; j < m; j++) {
-                char c = s.charAt(j);
-                set(i, j, c);
-            }
-        }
-        dist = new int[points][points];
-        v = new boolean[points];
-        path = new int[points];
-        dp = new int[points][1<<points];
-        return true;
-    }
-
-    private static void set(int i, int j, char c) {
-        grid[i][j] = -2;
-        if (c == 'x') {
-            grid[i][j] = -1;
-            return;
-        }
-        if (c == 'o') {
-            ps[grid[i][j] = 0] = new P(i, j, 0);
-        }
-        if (c == '*') {
-            ps[grid[i][j] = points++] = new P(i, j, 0);
-        }
-    }
-
-    static int tsp(int cur, int v) {
-        if (dp[cur][v] != -1) return dp[cur][v];
-        if (v == (1<<points)-1) return 0;
-        dp[cur][v] = Integer.MAX_VALUE;
-        for (int i = 0; i < points; i++) {
-            if ((v&(1<<i)) > 0) continue;
-            dp[cur][v] = Math.min(dp[cur][v], dist[cur][i] + tsp(i, v | (1<<i)));
-        }
-        return dp[cur][v];
-    }
-
     static boolean fillDist(int k) {
-        Queue<P> q = new LinkedList<>();
-        boolean[][] v = new boolean[n][m];
-        P s = ps[k];
         int cnt = 0;
-        v[s.x][s.y] = true;
-        q.add(s);
+        q.clear();
+        v = new boolean[n][m];
+        v[ps[k].x][ps[k].y] = true;
+        q.add(ps[k]);
         while (!q.isEmpty()) {
             P p = q.poll();
             if (grid[p.x][p.y] >= 0) {
@@ -111,12 +105,14 @@ public class Main {
         return cnt == points;
     }
 
-    static class P {
-        int x, y, d;
-        public P(int x, int y, int d) {
-            this.x = x;
-            this.y = y;
-            this.d = d;
+    static int tsp(int cur, int v) {
+        if (dp[cur][v] != -1) return dp[cur][v];
+        if (v == (1<<points)-1) return 0;
+        dp[cur][v] = Integer.MAX_VALUE;
+        for (int i = 0; i < points; i++) {
+            if ((v&(1<<i)) > 0) continue;
+            dp[cur][v] = Math.min(dp[cur][v], dist[cur][i] + tsp(i, v | (1<<i)));
         }
+        return dp[cur][v];
     }
 }
